@@ -16,7 +16,7 @@ cursos para que sejam abertas mastriculas para o mesmo."
 
 Criterios de aceite:
 ->Criar yum curso com nome, carga horária, publico alvo e valor do curso.
-->As opções para público alvo são: Estudante, Universitário, Empregado e Empregador.
+->As opções para público alvo são: Estudante, Universitário, Empregado e Empreendedor.
 ->Todos os campos do curso são obrigatórios.
  */
 public class CursoTest
@@ -29,11 +29,11 @@ public class CursoTest
         {
             Nome = "Informatica básica",
             CargaHoraria = (double)80,
-            PublicoAlvo = "Estudantes",
+            PublicoAlvo = PublicoAlvo.Estudante,
             Valor = (double)950
         };
 
-        //Action
+        //Act //Action
         var curso = new Curso(cursoEsperado.Nome, cursoEsperado.CargaHoraria, cursoEsperado.PublicoAlvo, cursoEsperado.Valor);
 
         //Assert
@@ -41,14 +41,21 @@ public class CursoTest
     }
 }
 
+public enum PublicoAlvo
+{
+    Estudante,
+    Universitario,
+    Empregado,
+    Empreendedor
+}
 
 public class Curso
 {
     public string Nome { get; private set; }
     public double CargaHoraria { get; private set; }
-    public string PublicoAlvo { get; private set; }
+    public PublicoAlvo PublicoAlvo { get; private set; }
     public double Valor { get; private set; }
-    public Curso(string nome, double cargaHoraria, string publicoAlvo, double valor)
+    public Curso(string nome, double cargaHoraria, PublicoAlvo publicoAlvo, double valor)
     {
         Nome = nome;
         CargaHoraria = cargaHoraria;
